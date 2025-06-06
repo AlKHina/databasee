@@ -11,8 +11,8 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 
  class Mongo {
-    private static final String CONNECTION_STRING = "mongodb://localhost:27018";
-    private static final String DB_NAME = "your_database";
+    private static final String CONNECTION_STRING = "mongodb://localhost:27017";
+    private static final String DB_NAME = "database";
     private static final MongoDatabase database;
 
     static {
