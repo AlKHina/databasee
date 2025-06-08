@@ -13,6 +13,13 @@
     </properties>
 
     <dependencies>
+        <!-- Spring Boot Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>3.2.0</version> <!-- или нужная вам версия -->
+        </dependency>
+
         <!-- MongoDB Java Driver -->
         <dependency>
             <groupId>org.mongodb</groupId>
@@ -23,13 +30,13 @@
 
     <build>
         <plugins>
-            <!-- Плагин для запуска приложения с main -->
+            <!-- Плагин для запуска приложения -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>com.example.Main</mainClass> <!-- заменишь на свой путь к классу Main -->
+                    <mainClass>com.example.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>

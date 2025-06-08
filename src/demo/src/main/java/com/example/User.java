@@ -1,5 +1,4 @@
 package com.example;
-
 import java.util.UUID;
 
 public class User {
@@ -11,14 +10,14 @@ public class User {
     private String password;
 
     public User() {
-        this.id = UUID.randomUUID();
+
     }
 
     public User(UUID companyID, String email, String fullname, UUID id, String password, String position) {
         this.companyID = companyID;
         this.email = email;
         this.fullname = fullname;
-        this.id = id;
+        this.id = UUID.randomUUID();
         this.password = password;
         this.position = position;
     }
@@ -50,11 +49,6 @@ public class User {
     }
 
 
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
     public void setCompanyID(UUID companyID) {
         this.companyID = companyID;
     }
@@ -73,5 +67,16 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    @Override
+    public String toString(){
+        return "User{" +
+                "id=" + id +
+                ", companyID=" + companyID +
+                ", fullname='" + fullname + '\'' +
+                ", position='" + position + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
