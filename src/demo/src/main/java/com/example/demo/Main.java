@@ -1,8 +1,10 @@
-package com.example;
+package com.example.demo;
 
 import java.util.Scanner;
 import java.util.UUID;
 
+import com.example.demo.model.Company;
+import com.example.mongoapp.Mongo;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;

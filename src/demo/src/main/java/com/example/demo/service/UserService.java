@@ -1,10 +1,12 @@
-package com.example;
+package com.example.demo.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+import com.example.demo.model.User;
 
 public class UserService {
     private final Map<UUID, User> users = new HashMap<>();

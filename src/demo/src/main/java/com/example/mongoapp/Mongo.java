@@ -1,4 +1,4 @@
-package com.example;
+package com.example.mongoapp;
 
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
@@ -10,7 +10,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 
- class Mongo {
+ public class Mongo {
   //private static final String CONNECTION_STRING = "mongodb://localhost:27017";
     private static final String DB_NAME = "database";
 

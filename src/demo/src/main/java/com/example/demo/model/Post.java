@@ -1,9 +1,9 @@
-package com.example;
+package com.example.demo.model;
 
-import java.util.UUID;
-import java.util.List;
-import java.util.ArrayList;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class Post {
     private String content;
