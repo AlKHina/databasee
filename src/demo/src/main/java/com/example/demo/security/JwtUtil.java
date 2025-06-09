@@ -2,6 +2,8 @@ package com.example.demo.security;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.UUID;
+import io.jsonwebtoken.Claims;
 
 import org.springframework.stereotype.Component;
 
@@ -18,15 +20,32 @@ public class JwtUtil {
         return Jwts.builder()
                 .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 86400000)) // 1 день
+                .setExpiration(new Date(System.currentTimeMillis() + 86400000)) 
                 .signWith(key)
                 .compact();
+    }
+    public UUID extractUserId(String token) {
+        try {
+            Claims claims = Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(token.replace("Bearer ", ""))
+                    .getBody();
+
+            return UUID.fromString(claims.getSubject());
+        } catch (JwtException | IllegalArgumentException e) {
+            return null;
+        }
     }
 
     public String validateToken(String token) {
         try {
-            return Jwts.parserBuilder().setSigningKey(key).build()
-                    .parseClaimsJws(token).getBody().getSubject();
+            return Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody()
+                    .getSubject();
         } catch (JwtException e) {
             return null;
         }
