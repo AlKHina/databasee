@@ -18,13 +18,22 @@ public class UserRepository {
         this.collection = db.getCollection("users");
     }
 
-    public Document findByUsername(String username) {
-        return collection.find(new Document("username", username)).first();
+    public Document findByFullnameAndCompanyBIN(String fullname, String companyBIN) {
+        return collection.find(
+            new Document("fullname", fullname)
+                .append("companyBIN", companyBIN)
+        ).first();
     }
 
-    public void save(User user) {
-        Document doc = new Document("name", user.getFullname())
-                .append("password", user.getPassword());
-        collection.insertOne(doc);
-    }
+     public void save(User user) {
+    Document doc = new Document("id", user.getId().toString())
+        .append("companyID", user.getCompanyID().toString())
+        .append("fullname", user.getFullname())
+        .append("position", user.getPosition())
+        .append("email", user.getEmail())
+        .append("password", user.getPassword())
+        .append("companyBIN", user.getCompanyBIN())
+        .append("avatarUrl", user.getAvatarUrl());
+    collection.insertOne(doc);
+}
 }

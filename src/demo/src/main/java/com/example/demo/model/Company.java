@@ -7,20 +7,20 @@ public class Company {
      private String name;
      private String login;
      private String password;
+     private String bin; 
+     private String logoUrl; 
 
-      
-      public Company() {
-        this.id = UUID.randomUUID();
+    public Company() {
     }
 
-    public Company(UUID id, String login, String name, String password) {
+    public Company(String bin, UUID id, String login, String logoUrl, String name, String password) {
+        this.bin = bin;
         this.id = id;
         this.login = login;
+        this.logoUrl = logoUrl;
         this.name = name;
         this.password = password;
     }
-
-
 
     public UUID getId() {
         return id;
@@ -36,6 +36,14 @@ public class Company {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getBin() {
+        return bin;
+    }
+
+    public String getLogoUrl() {
+        return logoUrl;
     }
 
 
@@ -54,5 +62,13 @@ public class Company {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setBin(String bin) {
+        this.bin = bin;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 }  

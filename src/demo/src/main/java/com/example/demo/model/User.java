@@ -8,21 +8,22 @@ public class User {
     private String position;
     private String email;
     private String password;
+     private String companyBIN; 
+    private String avatarUrl;
 
     public User() {
-
     }
 
-    public User(UUID companyID, String email, String fullname, UUID id, String password, String position) {
+    public User(String avatarUrl, String companyBIN, UUID companyID, String email, String fullname, UUID id, String password, String position) {
+        this.avatarUrl = avatarUrl;
+        this.companyBIN = companyBIN;
         this.companyID = companyID;
         this.email = email;
         this.fullname = fullname;
-        this.id = UUID.randomUUID();
+        this.id = id;
         this.password = password;
         this.position = position;
     }
-
-
 
     public UUID getId() {
         return id;
@@ -48,6 +49,19 @@ public class User {
         return password;
     }
 
+    public String getCompanyBIN() {
+        return companyBIN;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+
+    
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public void setCompanyID(UUID companyID) {
         this.companyID = companyID;
@@ -68,15 +82,12 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    @Override
-    public String toString(){
-        return "User{" +
-                "id=" + id +
-                ", companyID=" + companyID +
-                ", fullname='" + fullname + '\'' +
-                ", position='" + position + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+
+    public void setCompanyBIN(String companyBIN) {
+        this.companyBIN = companyBIN;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

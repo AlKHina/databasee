@@ -25,8 +25,12 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody User user) {
-        String token = authService.login(user.getFullname(), user.getPassword());
-        return token != null ? token : "Неверные данные";
-    }
+public String login(@RequestBody User user) {
+    String token = authService.login(
+        user.getFullname(),
+        user.getPassword(),
+        user.getCompanyBIN()
+    );
+    return token != null ? token : "Неверные данные";
+}
 }
