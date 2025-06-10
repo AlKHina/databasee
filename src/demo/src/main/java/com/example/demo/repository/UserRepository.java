@@ -36,4 +36,9 @@ public class UserRepository {
         .append("avatarUrl", user.getAvatarUrl());
     collection.insertOne(doc);
 }
+public void updateAvatarUrl(String fullname, String companyBIN, String avatarUrl) {
+    Document query = new Document("fullname", fullname).append("companyBIN", companyBIN);
+    Document update = new Document("$set", new Document("avatarUrl", avatarUrl));
+    collection.updateOne(query, update);
+}
 }
