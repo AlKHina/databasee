@@ -1,9 +1,5 @@
 package com.example.demo.service;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Base64;
 
 import org.bson.Document;
@@ -24,7 +20,8 @@ public class AuthService {
     private final JwtUtil jwtUtil;
     private final PasswordEncoder passwordEncoder;
 
-    public AuthService(UserRepository userRepository, CompanyRepository companyRepository, JwtUtil jwtUtil, PasswordEncoder passwordEncoder) {
+    public AuthService(UserRepository userRepository, CompanyRepository companyRepository,
+                       JwtUtil jwtUtil, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.companyRepository = companyRepository;
         this.jwtUtil = jwtUtil;
@@ -53,23 +50,11 @@ public class AuthService {
         }
     }
 
-   public void updateAvatarFromBase64(String fullname, String companyBIN, String base64Image) throws IOException {
-    Document user = userRepository.findByFullnameAndCompanyBIN(fullname, companyBIN);
-    if (user == null) return;
+    public void updateAvatarFromBase64(String fullname, String companyBIN, String base64Image) {
+        Document user = userRepository.findByFullnameAndCompanyBIN(fullname, companyBIN);
+        if (user == null) return;
 
-    byte[] imageBytes = Base64.getDecoder().decode(base64Image);
-    String filename = System.currentTimeMillis() + ".png";
-    String uploadDir = "uploads/";
-    Path uploadPath = Paths.get(uploadDir);
-
-    if (!Files.exists(uploadPath)) {
-        Files.createDirectories(uploadPath);
+        byte[] imageBytes = Base64.getDecoder().decode(base64Image);
+        userRepository.updateAvatarData(fullname, companyBIN, imageBytes);
     }
-
-    Path filePath = uploadPath.resolve(filename);
-    Files.write(filePath, imageBytes);
-
-    String avatarUrl = "/uploads/" + filename;
-    userRepository.updateAvatarUrl(fullname, companyBIN, avatarUrl);
-}
 }

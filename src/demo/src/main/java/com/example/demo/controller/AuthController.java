@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import java.io.IOException;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,16 +36,11 @@ public class AuthController {
     }
 
     @PostMapping("/avatar/base64")
-public String uploadAvatarBase64(
-        @RequestParam("fullname") String fullname,
-        @RequestParam("companyBIN") String companyBIN,
-        @RequestBody String base64Image) {
-    try {
+    public String uploadAvatarBase64(
+            @RequestParam("fullname") String fullname,
+            @RequestParam("companyBIN") String companyBIN,
+            @RequestBody String base64Image) {
         authService.updateAvatarFromBase64(fullname, companyBIN, base64Image);
         return "Аватар обновлён через Base64";
-    } catch (IOException e) {
-        return "Ошибка загрузки: " + e.getMessage();
     }
-}
-
 }
